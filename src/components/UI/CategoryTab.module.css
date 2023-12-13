@@ -1,0 +1,14 @@
+.categoryWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* flex-wrap: wrap; */
+}
+.categoryWrapper .category {
+  background-color: rgb(202, 204, 222);
+  margin: 0.5rem;
+  border-radius: 6px;
+  padding: 1rem;
+  width: 80%;
+}

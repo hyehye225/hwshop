@@ -1,0 +1,32 @@
+.card {
+  margin: 1rem;
+  border-radius: 6px;
+  background-color: whitesmoke;
+  padding: 1rem;
+  /* width: 180px; */
+  width: 200px;
+}
+.img {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: large;
+  font-weight: 700;
+}
+.price {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.card * {
+  width: 100%;
+  box-sizing: border-box;
+}

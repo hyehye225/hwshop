@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Layout from "./components/Layout/Layout";
+import CategoryBox from "./components/UI/CategoryBox";
+import CategoryTab from "./components/UI/CategoryTab";
+import { useState, useEffect } from "react";
 function App() {
+  const [category, setCategory] = useState(null);
+  useEffect(() => {
+    fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response.product);
+        setCategory(response.product);
+      });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <CategoryTab category={category} />
+      <CategoryBox />
+    </Layout>
   );
 }
 

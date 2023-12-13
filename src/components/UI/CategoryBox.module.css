@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+
+  background-color: rgb(202, 204, 222);
+  margin: 1rem auto;
+  border-radius: 6px;
+  padding: 1rem;
+  width: 80%;
+  /* max-width: 40rem; */
+}
