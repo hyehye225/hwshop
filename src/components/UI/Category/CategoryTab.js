@@ -15,9 +15,9 @@ const CategoryTab = (props) => {
   return (
     <div className={classes.categoryWrapper}>
       <Tab
-        isSelected={"Whole" === selected}
-        category="Whole"
-        onClick={() => clickHandler("Whole")}
+        isSelected={"All" === selected}
+        category="All"
+        onClick={() => clickHandler("All")}
       />
       {category &&
         category.map((category) => (

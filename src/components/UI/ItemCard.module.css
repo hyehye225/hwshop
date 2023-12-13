@@ -4,18 +4,23 @@
   background-color: whitesmoke;
   padding: 1rem;
   /* width: 180px; */
-  width: 200px;
+  width: 210px;
+  min-height: 410px;
 }
 .img {
   border-radius: 6px;
   width: 100%;
-  height: auto;
+  height: 300px;
+
+  padding-bottom: 0.5rem;
 }
 .info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* padding: 1rem; */
 }
 .title {
   font-size: large;
@@ -24,6 +29,8 @@
 .price {
   font-size: medium;
   font-weight: 500;
+
+  margin: 0.5rem;
 }
 
 .card * {

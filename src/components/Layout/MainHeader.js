@@ -1,12 +1,12 @@
-import CategoryTab from "../UI/Category/CategoryTab";
 import classes from "./MainHeader.module.css";
 const MainHeader = () => {
   return (
     <header className={classes.header}>
-      <h1>HWShop</h1>
+      <h1>Shop</h1>
       <nav>
         <ul>
-          <li></li>
+          <li>회원가입</li>
+          <li>로그인</li>
         </ul>
       </nav>
     </header>

@@ -3,21 +3,23 @@ import { useEffect, useState } from "react";
 import ItemCard from "../ItemCard";
 const CategoryBox = (props) => {
   const selected = props.selected;
-  const [items, setItems] = useState(null);
+  const items = props.items;
+  const setItems = props.setItems;
+  // const [items, setItems] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);
-    console.log("selected category is", selected);
-    fetch(
-      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=30`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response.items);
-        setItems(response.items);
-        setIsLoading(false);
-      });
-  }, [selected]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   console.log("selected category is", selected);
+  //   fetch(
+  //     `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=30`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       console.log(response.items);
+  //       setItems(response.items);
+  //       setIsLoading(false);
+  //     });
+  // }, [selected]);
   let filteredItems;
   if (items && selected) {
     console.log(selected);
@@ -28,7 +30,7 @@ const CategoryBox = (props) => {
     filteredItems = items.filter((item) => item.type === target);
     console.log(filteredItems);
   }
-  if (selected === "Whole") {
+  if (selected === "All") {
     filteredItems = items;
   }
   return (

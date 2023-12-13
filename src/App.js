@@ -3,10 +3,12 @@ import Layout from "./components/Layout/Layout";
 import CategoryBox from "./components/UI/Category/CategoryBox";
 import CategoryTab from "./components/UI/Category/CategoryTab";
 import { useState, useEffect } from "react";
+import ItemSlider from "./components/UI/ItemSlider";
 function App() {
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selected, setSelected] = useState("Whole");
+  const [selected, setSelected] = useState("All");
+  const [items, setItems] = useState(null);
   useEffect(() => {
     fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
       .then((response) => response.json())
@@ -19,6 +21,19 @@ function App() {
         alert(error.message);
       });
   }, []);
+  useEffect(() => {
+    setIsLoading(true);
+    console.log("selected category is", selected);
+    fetch(
+      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=30`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response.items);
+        setItems(response.items);
+        setIsLoading(false);
+      });
+  }, [selected]);
   return (
     <Layout>
       {isLoading && <div>Loading...</div>}
@@ -29,7 +44,10 @@ function App() {
           selected={selected}
         />
       )}
-      <CategoryBox selected={selected} />
+      {items && !isLoading && (
+        <CategoryBox selected={selected} setItems={setItems} items={items} />
+      )}
+      {items && <ItemSlider items={items} />}
     </Layout>
   );
 }
