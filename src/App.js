@@ -35,7 +35,7 @@ function App() {
       });
   }, [selected]);
   return (
-    <>
+    <div className="container">
       <Layout>
         {isLoading && <div>Loading...</div>}
         {!isLoading && (
@@ -50,7 +50,7 @@ function App() {
         )}
       </Layout>
       {items && !isLoading && <ItemSlider items={items} />}
-    </>
+    </div>
   );
 }
 

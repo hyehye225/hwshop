@@ -8,10 +8,15 @@
   background-color: #81d8d0;
 
   box-sizing: border-box;
+  position: relative;
 }
 
 .header h1 {
   color: black;
+  position: absolute;
+  top: 25%;
+  left: 50%; /* 부모 요소 기준으로 50% 좌측으로 이동 */
+  transform: translate(-50%, -50%); /* 요소의 중심을 기준으로 정렬 */
 }
 
 .header ul {
@@ -26,7 +31,16 @@
 }
 
 .header ul li {
-  padding-left: 10px;
+  padding: 1rem;
   font-size: large;
   font-weight: 700;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  /* margin-left: 20px; */
 }
