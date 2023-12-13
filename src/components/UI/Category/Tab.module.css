@@ -1,5 +1,5 @@
 .category {
-  background-color: rgb(202, 204, 222);
+  background-color: #f5f5f5;
   margin: 0.5rem;
   border-radius: 6px;
   padding: 1rem;
@@ -7,9 +7,9 @@
 }
 
 .category:hover {
-  background-color: rgb(144, 148, 179);
+  background-color: #81d8d0;
 }
 
 .selected {
-  background-color: rgb(144, 148, 179);
+  background-color: #81d8d0;
 }

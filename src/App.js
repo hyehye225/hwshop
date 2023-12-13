@@ -25,7 +25,7 @@ function App() {
     setIsLoading(true);
     console.log("selected category is", selected);
     fetch(
-      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=10`
+      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=15`
     )
       .then((response) => response.json())
       .then((response) => {

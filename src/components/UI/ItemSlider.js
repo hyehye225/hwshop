@@ -8,7 +8,7 @@ const ItemSlider = (props) => {
   const settings = {
     dots: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 5,
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,
@@ -16,13 +16,15 @@ const ItemSlider = (props) => {
   };
   console.log(items);
   return (
-    <Slider {...settings}>
-      {items.map((item) => (
-        <div className={classes.container} key={item.id}>
-          <img className={classes.img} src={item.imageUrl} alt={item.title} />
-        </div>
-      ))}
-    </Slider>
+    <div className={classes.itemSlider}>
+      <Slider {...settings}>
+        {items.map((item) => (
+          <div className={classes.container} key={item.id}>
+            <img className={classes.img} src={item.imageUrl} alt={item.title} />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 };
 export default ItemSlider;
