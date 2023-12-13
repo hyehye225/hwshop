@@ -1,4 +1,4 @@
-import CategoryTab from "../UI/CategoryTab";
+import CategoryTab from "../UI/Category/CategoryTab";
 import classes from "./MainHeader.module.css";
 const MainHeader = () => {
   return (

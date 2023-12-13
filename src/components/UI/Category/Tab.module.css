@@ -1,0 +1,15 @@
+.category {
+  background-color: rgb(202, 204, 222);
+  margin: 0.5rem;
+  border-radius: 6px;
+  padding: 1rem;
+  width: 80%;
+}
+
+.category:hover {
+  background-color: rgb(144, 148, 179);
+}
+
+.selected {
+  background-color: rgb(144, 148, 179);
+}
