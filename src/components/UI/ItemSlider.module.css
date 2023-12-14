@@ -30,7 +30,3 @@
   border-radius: 6px;
   padding: 1rem;
 }
-.slick-prev:before,
-.slick-next:before {
-  color: black !important;
-}

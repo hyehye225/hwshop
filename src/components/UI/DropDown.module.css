@@ -1,0 +1,48 @@
+/* DropDown.module.css */
+
+/* 드롭다운 버튼 스타일 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #f5f5f5;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 드롭다운 내용 스타일 */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f5f5f5;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* 드롭다운 내용 버튼 스타일 */
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background-color: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+/* 드롭다운 내용 버튼 호버 스타일 */
+.dropdown-content button:hover {
+  background-color: #81d8d0;
+}
+
+/* 드롭다운 내용 보이게 하기 */
+.dropdown:hover .dropdown-content {
+  display: block;
+}

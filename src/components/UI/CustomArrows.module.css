@@ -1,0 +1,27 @@
+.customArrow {
+  position: absolute;
+  top: 57%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 700;
+  color: black; /* 화살표 색상 */
+  background-color: #81d8d0; /* 배경색 (투명) */
+  width: 40px; /* 화살표 너비 */
+  height: 40px; /* 화살표 높이 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%; /* 화살표 모양을 둥글게 */
+}
+
+/* 이전 화살표 */
+.prev {
+  left: 10px; /* 슬라이더 왼쪽에 위치하도록 조정 */
+}
+
+/* 다음 화살표 */
+.next {
+  right: 10px; /* 슬라이더 오른쪽에 위치하도록 조정 */
+}

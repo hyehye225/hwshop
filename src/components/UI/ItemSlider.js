@@ -3,11 +3,15 @@ import classes from "./ItemSlider.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import DropDown from "./DropDown";
+import CustomArrows from "./CustomArrows";
 
 const ItemSlider = (props) => {
   const items = props.items;
   const selected = props.selected;
   const topic = props.topic;
+  const selectedOption = props.selectedOption;
+  const handleSelect = props.handleSelect;
   const settings = {
     // dots: true,
     speed: 500,
@@ -16,8 +20,8 @@ const ItemSlider = (props) => {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 1500,
-    // prevArrow: <ArrowLeft />,
-    // nextArrow: <ArrowRight />,
+    nextArrow: <CustomArrows direction="next" />,
+    prevArrow: <CustomArrows direction="prev" />,
   };
   console.log(items);
   return (
@@ -26,6 +30,14 @@ const ItemSlider = (props) => {
       {topic === "recommended" && (
         <h1>Recommended for you in {selected.category}</h1>
       )}
+      {/* {topic === "recommended" && (
+        <div>
+          <button>좋아요 순</button>
+          <button>만족도 순</button>
+        </div>
+      )} */}
+      {topic === "recommended" && <DropDown handleSelect={handleSelect} />}
+
       <Slider {...settings}>
         {items.map((item) => (
           <div className={classes.container} key={item.id}>

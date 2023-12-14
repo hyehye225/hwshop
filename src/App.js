@@ -12,6 +12,11 @@ function App() {
   const [items, setItems] = useState(null);
   const [ranked, setRanked] = useState(null);
   const [recommended, setRecommended] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+  };
   useEffect(() => {
     fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
       .then((response) => response.json())
@@ -29,7 +34,7 @@ function App() {
     setIsLoading(true);
     console.log("selected category is", selected);
     fetch(
-      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=25`
+      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=50`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -48,34 +53,58 @@ function App() {
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
-        setRecommended(response.items);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, [selected]);
-  useEffect(() => {
-    let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
-    url = selected.id !== 0 ? `${url}?category=${selected.id}` : url;
-    fetch(url)
-      .then((response) => response.json())
-      .then((response) => {
         setRanked(response.items);
       })
       .catch((error) => {
         setError(error.message);
       });
   }, [selected]);
+  // useEffect(() => {
+  //   let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+  //   url = selected.id !== 0 ? `${url}?category=${selected.id}` : url;
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       setRecommended(response.items);
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message);
+  //     });
+  // }, [selected]);
+  useEffect(() => {
+    console.log(selected.id, selectedOption);
+    if (selectedOption) {
+      let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+      url = `${url}?category=${selected.id}&type=${selectedOption}`;
+
+      console.log(selectedOption);
+      console.log(url);
+      fetch(url)
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(selectedOption);
+          console.log(response.items);
+          setRecommended(response.items);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else {
+      let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+      url = selected.id ? `${url}?category=${selected.id}` : url;
+      fetch(url)
+        .then((response) => response.json())
+        .then((response) => {
+          setRecommended(response.items);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    }
+  }, [selected, selectedOption]);
   return (
     <div className="container">
       <Layout category={category} setSelected={setSelected} selected={selected}>
-        {/* {!isLoading && (
-          <CategoryTab
-            category={category}
-            setSelected={setSelected}
-            selected={selected}
-          />
-        )} */}
         {ranked && !isLoading && (
           <ItemSlider items={ranked} selected={selected} topic="ranked" />
         )}
@@ -84,20 +113,11 @@ function App() {
             items={recommended}
             selected={selected}
             topic="recommended"
+            selectedOption={selectedOption}
+            handleSelect={handleSelect}
           />
         )}
-        {/* <div
-          style={{
-            fontSize: "x-large",
-            fontWeight: "bold",
-            margin: "0.5rem",
-            // border: "2px solid black",
-            borderRadius: "5px",
-            padding: "0.5rem",
-          }}
-        >
-          {selected.category}
-        </div> */}
+
         {isLoading && <div>Loading...</div>}
         {error && <div>{error}</div>}
         {items && !isLoading && (
