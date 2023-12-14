@@ -1,17 +1,26 @@
 .container {
   display: flex;
   align-items: center;
+  height: 100vh;
 }
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
+  position: absolute;
+  left: 60px;
+}
 .categories {
   border-radius: 8px;
   visibility: hidden;
   position: absolute;
-  top: 40px;
+  top: 60px;
+  left: 60px;
   background-color: gray;
   padding: 0.5rem;
 }
-
 .container:hover .categories {
   visibility: visible;
 }

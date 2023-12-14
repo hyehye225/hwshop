@@ -1,12 +1,15 @@
 import { useState } from "react";
 import ItemSlider from "./ItemSlider";
+import { FaCaretDown } from "react-icons/fa";
 import classes from "./DropDown.module.css";
 const DropDown = (props) => {
   const handleSelect = props.handleSelect;
   return (
     <div>
       <div className={classes.dropdown}>
-        <button className={classes.dropbtn}>Sort By</button>
+        <button className={classes.dropbtn}>
+          Sort By <FaCaretDown />
+        </button>
         <div className={classes["dropdown-content"]}>
           <button onClick={() => handleSelect(1)}>좋아요 순</button>
           <button onClick={() => handleSelect(2)}>만족도 순</button>

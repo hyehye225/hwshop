@@ -1,11 +1,12 @@
 .card {
   margin: 1rem;
+  padding: 1rem;
   border-radius: 6px;
   background-color: #f5f5f5;
   padding: 1rem;
   /* width: 180px; */
   width: 300px;
-  min-height: 500px;
+  min-height: 250px;
 
   display: flex;
   flex-direction: column;
@@ -15,8 +16,8 @@
 }
 .img {
   border-radius: 6px;
-  width: 100%;
-  height: auto;
+  width: auto;
+  /* height: auto; */
   max-height: 400px;
   /* max-height: 100%; */
   /*  */
@@ -24,7 +25,7 @@
 }
 .info {
   position: relative;
-  bottom: 1.5rem;
+  bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +37,7 @@
   /* margin: 1rem; */
 }
 .title {
+  margin: 1rem;
   font-size: large;
   font-weight: 700;
 }

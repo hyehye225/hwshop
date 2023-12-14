@@ -105,6 +105,9 @@ function App() {
   return (
     <div className="container">
       <Layout category={category} setSelected={setSelected} selected={selected}>
+        <div className="textCon">
+          <h1>{selected.category}</h1>
+        </div>
         {ranked && !isLoading && (
           <ItemSlider items={ranked} selected={selected} topic="ranked" />
         )}

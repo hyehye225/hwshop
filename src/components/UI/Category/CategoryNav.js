@@ -1,3 +1,4 @@
+import Sidebar from "react-sidebar";
 import { useState } from "react";
 import classes from "./CategoryNav.module.css";
 import { FaBars } from "react-icons/fa";
@@ -8,9 +9,11 @@ const CategoryNav = (props) => {
   const setSelected = props.setSelected;
   // const [activeCategory, setActiveCategory] = useState(false);
   // const categoryList = ["Category 1", "Category 2", "Category 3"];
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const iconClickHandler = () => {
     // setActiveCategory(!activeCategory);
+    console.log("setActiveCategory");
+    setSidebarOpen(!sidebarOpen);
   };
   const clickHandler = (category, id) => {
     setSelected({ category, id });
@@ -18,8 +21,10 @@ const CategoryNav = (props) => {
   };
   return (
     <div className={classes.container}>
-      <FaBars onClick={iconClickHandler} className={classes.icon} />
-      <h4>Shop by Category</h4>
+      <div className={classes.left}>
+        <FaBars onClick={iconClickHandler} className={classes.icon} />
+        <h4>Shop by Category</h4>
+      </div>
       {category && (
         <div className={classes.categories}>
           <ul>

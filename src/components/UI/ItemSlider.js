@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DropDown from "./DropDown";
 import CustomArrows from "./CustomArrows";
+import ItemCard from "./ItemCard";
 
 const ItemSlider = (props) => {
   const items = props.items;
@@ -15,7 +16,7 @@ const ItemSlider = (props) => {
   const settings = {
     // dots: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,
@@ -26,9 +27,16 @@ const ItemSlider = (props) => {
   console.log(items);
   return (
     <div className={classes.itemSlider}>
-      {topic === "ranked" && <h1>TOP 10 in {selected.category}</h1>}
+      {topic === "ranked" && (
+        <div className={classes.textCon}>
+          <h3>TOP 10</h3>
+        </div>
+      )}
       {topic === "recommended" && (
-        <h1>Recommended for you in {selected.category}</h1>
+        <div className={classes.textCon}>
+          <h3>Recommended for you</h3>
+          <DropDown handleSelect={handleSelect} />
+        </div>
       )}
       {/* {topic === "recommended" && (
         <div>
@@ -36,14 +44,15 @@ const ItemSlider = (props) => {
           <button>만족도 순</button>
         </div>
       )} */}
-      {topic === "recommended" && <DropDown handleSelect={handleSelect} />}
+      {/* {topic === "recommended" && <DropDown handleSelect={handleSelect} />} */}
 
       <Slider {...settings}>
         {items.map((item) => (
           <div className={classes.container} key={item.id}>
-            <img className={classes.img} src={item.imageUrl} alt={item.title} />
+            <ItemCard key={item.id} item={item} />
           </div>
         ))}
+        {/* <img className={classes.img} src={item.imageUrl} alt={item.title} /> */}
       </Slider>
     </div>
   );
