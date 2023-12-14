@@ -6,11 +6,11 @@ const CategoryNav = (props) => {
   const category = props.category;
   const selected = props.selected;
   const setSelected = props.setSelected;
-  const [activeCategory, setActiveCategory] = useState(false);
+  // const [activeCategory, setActiveCategory] = useState(false);
   // const categoryList = ["Category 1", "Category 2", "Category 3"];
 
   const iconClickHandler = () => {
-    setActiveCategory(!activeCategory);
+    // setActiveCategory(!activeCategory);
   };
   const clickHandler = (category, id) => {
     setSelected({ category, id });
@@ -19,13 +19,14 @@ const CategoryNav = (props) => {
   return (
     <div className={classes.container}>
       <FaBars onClick={iconClickHandler} className={classes.icon} />
+      <h4>Shop by Category</h4>
       {category && (
         <div className={classes.categories}>
           <ul>
             <Tab
               isSelected={100 === selected.id}
               category="All"
-              onClick={() => clickHandler("All", 100)}
+              onClick={() => clickHandler("All", 0)}
             />
             {category.map((category) => (
               <Tab

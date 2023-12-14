@@ -7,10 +7,11 @@ import ItemSlider from "./components/UI/ItemSlider";
 function App() {
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selected, setSelected] = useState({ id: 100, category: "All" });
+  const [selected, setSelected] = useState({ id: 0, category: "All" });
   const [error, setError] = useState(null);
   const [items, setItems] = useState(null);
   const [ranked, setRanked] = useState(null);
+  const [recommended, setRecommended] = useState(null);
   useEffect(() => {
     fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
       .then((response) => response.json())
@@ -43,7 +44,19 @@ function App() {
   }, [selected]);
   useEffect(() => {
     let url = "https://cozshopping.codestates-seb.link/api/v3/ranking";
-    url = selected.id !== 100 ? `${url}?category=${selected.id}` : url;
+    url = selected.id !== 0 ? `${url}?category=${selected.id}` : url;
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => {
+        setRecommended(response.items);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, [selected]);
+  useEffect(() => {
+    let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+    url = selected.id !== 0 ? `${url}?category=${selected.id}` : url;
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
@@ -53,7 +66,6 @@ function App() {
         setError(error.message);
       });
   }, [selected]);
-
   return (
     <div className="container">
       <Layout category={category} setSelected={setSelected} selected={selected}>
@@ -64,7 +76,17 @@ function App() {
             selected={selected}
           />
         )} */}
-        <div
+        {ranked && !isLoading && (
+          <ItemSlider items={ranked} selected={selected} topic="ranked" />
+        )}
+        {recommended && !isLoading && (
+          <ItemSlider
+            items={recommended}
+            selected={selected}
+            topic="recommended"
+          />
+        )}
+        {/* <div
           style={{
             fontSize: "x-large",
             fontWeight: "bold",
@@ -75,16 +97,13 @@ function App() {
           }}
         >
           {selected.category}
-        </div>
+        </div> */}
         {isLoading && <div>Loading...</div>}
         {error && <div>{error}</div>}
         {items && !isLoading && (
           <CategoryBox selected={selected} setItems={setItems} items={items} />
         )}
       </Layout>
-      {ranked && !isLoading && (
-        <ItemSlider items={ranked} selected={selected} />
-      )}
     </div>
   );
 }

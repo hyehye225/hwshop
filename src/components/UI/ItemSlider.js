@@ -3,35 +3,29 @@ import classes from "./ItemSlider.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const ArrowLeft = (props) => (
-  <button {...props} className={"prev"}>
-    prev
-  </button>
-);
-const ArrowRight = (props) => (
-  <button {...props} className={"next"}>
-    next
-  </button>
-);
 
 const ItemSlider = (props) => {
   const items = props.items;
   const selected = props.selected;
+  const topic = props.topic;
   const settings = {
-    dots: true,
+    // dots: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1500,
     // prevArrow: <ArrowLeft />,
     // nextArrow: <ArrowRight />,
   };
   console.log(items);
   return (
     <div className={classes.itemSlider}>
-      <h2>TOP 10 in {selected.category}</h2>
+      {topic === "ranked" && <h1>TOP 10 in {selected.category}</h1>}
+      {topic === "recommended" && (
+        <h1>Recommended for you in {selected.category}</h1>
+      )}
       <Slider {...settings}>
         {items.map((item) => (
           <div className={classes.container} key={item.id}>
