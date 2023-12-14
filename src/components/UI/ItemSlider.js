@@ -23,6 +23,42 @@ const ItemSlider = (props) => {
     autoplaySpeed: 1500,
     nextArrow: <CustomArrows direction="next" />,
     prevArrow: <CustomArrows direction="prev" />,
+    variableHeight: true,
+    responsive: [
+      {
+        breakpoint: 1500, // 화면 크기가 1024px 이하일 때
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          // dots: true,
+        },
+      },
+      {
+        breakpoint: 1024, // 화면 크기가 1024px 이하일 때
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          // dots: true,
+        },
+      },
+      {
+        breakpoint: 768, // 화면 크기가 768px 이하일 때
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480, // 화면 크기가 480px 이하일 때
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   console.log(items);
   return (
@@ -46,7 +82,7 @@ const ItemSlider = (props) => {
       )} */}
       {/* {topic === "recommended" && <DropDown handleSelect={handleSelect} />} */}
 
-      <Slider {...settings}>
+      <Slider {...settings} className={classes["slick-slide"]}>
         {items.map((item) => (
           <div className={classes.container} key={item.id}>
             <ItemCard key={item.id} item={item} />

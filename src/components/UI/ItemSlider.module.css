@@ -38,3 +38,6 @@
   align-items: center;
   gap: 1rem;
 }
+.slick-slide .container {
+  height: 600px; /* 높이를 원하는 값으로 조정 */
+}

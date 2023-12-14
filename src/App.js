@@ -4,6 +4,7 @@ import CategoryBox from "./components/UI/Category/CategoryBox";
 import CategoryTab from "./components/UI/Category/CategoryTab";
 import { useState, useEffect } from "react";
 import ItemSlider from "./components/UI/ItemSlider";
+import { API_URL } from "./constants/constants";
 function App() {
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +19,7 @@ function App() {
     setSelectedOption(option);
   };
   useEffect(() => {
-    fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
+    fetch(`${API_URL}/categories`)
       .then((response) => response.json())
       .then((response) => {
         setError(null);
@@ -33,9 +34,7 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
     console.log("selected category is", selected);
-    fetch(
-      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=50`
-    )
+    fetch(`${API_URL}/products?page=1&limit=50`)
       .then((response) => response.json())
       .then((response) => {
         setError(null);
@@ -48,7 +47,7 @@ function App() {
       });
   }, [selected]);
   useEffect(() => {
-    let url = "https://cozshopping.codestates-seb.link/api/v3/ranking";
+    let url = `${API_URL}/ranking`;
     url = selected.id !== 0 ? `${url}?category=${selected.id}` : url;
     fetch(url)
       .then((response) => response.json())
@@ -74,7 +73,7 @@ function App() {
   useEffect(() => {
     console.log(selected.id, selectedOption);
     if (selectedOption) {
-      let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+      let url = `${API_URL}/recommendation`;
       url = `${url}?category=${selected.id}&type=${selectedOption}`;
 
       console.log(selectedOption);
@@ -90,7 +89,7 @@ function App() {
           setError(error.message);
         });
     } else {
-      let url = "https://cozshopping.codestates-seb.link/api/v3/recommendation";
+      let url = `${API_URL}/recommendation`;
       url = selected.id ? `${url}?category=${selected.id}` : url;
       fetch(url)
         .then((response) => response.json())
