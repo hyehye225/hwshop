@@ -18,6 +18,8 @@
 
 .categories ul {
   margin: 1rem;
+  font-size: medium;
+  font-weight: 700;
 }
 
 .categories ul li {

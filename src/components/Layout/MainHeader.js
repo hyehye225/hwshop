@@ -1,9 +1,16 @@
 import CategoryNav from "../UI/Category/CategoryNav";
 import classes from "./MainHeader.module.css";
-const MainHeader = () => {
+const MainHeader = (props) => {
+  const category = props.category;
+  const selected = props.selected;
+  const setSelected = props.setSelected;
   return (
     <header className={classes.header}>
-      <CategoryNav />
+      <CategoryNav
+        category={category}
+        setSelected={setSelected}
+        selected={selected}
+      />
       <h1>Shop</h1>
       <nav>
         <ul>

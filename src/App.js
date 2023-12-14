@@ -25,7 +25,7 @@ function App() {
     setIsLoading(true);
     console.log("selected category is", selected);
     fetch(
-      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=15`
+      `https://cozshopping.codestates-seb.link/api/v3/products?page=1&limit=25`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -36,15 +36,27 @@ function App() {
   }, [selected]);
   return (
     <div className="container">
-      <Layout>
+      <Layout category={category} setSelected={setSelected} selected={selected}>
         {isLoading && <div>Loading...</div>}
-        {!isLoading && (
+        {/* {!isLoading && (
           <CategoryTab
             category={category}
             setSelected={setSelected}
             selected={selected}
           />
-        )}
+        )} */}
+        <div
+          style={{
+            fontSize: "x-large",
+            fontWeight: "bold",
+            margin: "0.5rem",
+            border: "2px solid black",
+            borderRadius: "5px",
+            padding: "0.5rem",
+          }}
+        >
+          {selected}
+        </div>
         {items && !isLoading && (
           <CategoryBox selected={selected} setItems={setItems} items={items} />
         )}
