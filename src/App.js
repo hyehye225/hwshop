@@ -7,18 +7,21 @@ import ItemSlider from "./components/UI/ItemSlider";
 function App() {
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selected, setSelected] = useState("All");
+  const [selected, setSelected] = useState({ id: 100, category: "All" });
+  const [error, setError] = useState(null);
   const [items, setItems] = useState(null);
+  const [ranked, setRanked] = useState(null);
   useEffect(() => {
     fetch(`https://cozshopping.codestates-seb.link/api/v3/categories`)
       .then((response) => response.json())
       .then((response) => {
+        setError(null);
         console.log(response.product);
         setCategory(response.product);
         setIsLoading(false);
       })
       .catch((error) => {
-        alert(error.message);
+        setError(error.message);
       });
   }, []);
   useEffect(() => {
@@ -29,15 +32,31 @@ function App() {
     )
       .then((response) => response.json())
       .then((response) => {
+        setError(null);
         console.log(response.items);
         setItems(response.items);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
       });
   }, [selected]);
+  useEffect(() => {
+    let url = "https://cozshopping.codestates-seb.link/api/v3/ranking";
+    url = selected ? `${url}?${selected.id}` : "";
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => {
+        setRanked(response.items);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, [selected]);
+
   return (
     <div className="container">
       <Layout category={category} setSelected={setSelected} selected={selected}>
-        {isLoading && <div>Loading...</div>}
         {/* {!isLoading && (
           <CategoryTab
             category={category}
@@ -50,18 +69,20 @@ function App() {
             fontSize: "x-large",
             fontWeight: "bold",
             margin: "0.5rem",
-            border: "2px solid black",
+            // border: "2px solid black",
             borderRadius: "5px",
             padding: "0.5rem",
           }}
         >
-          {selected}
+          {selected.category}
         </div>
+        {isLoading && <div>Loading...</div>}
+        {error && <div>{error}</div>}
         {items && !isLoading && (
           <CategoryBox selected={selected} setItems={setItems} items={items} />
         )}
       </Layout>
-      {items && !isLoading && <ItemSlider items={items} />}
+      {ranked && !isLoading && <ItemSlider items={ranked} />}
     </div>
   );
 }

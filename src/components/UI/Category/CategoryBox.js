@@ -7,14 +7,14 @@ const CategoryBox = (props) => {
   let filteredItems;
   if (items && selected) {
     console.log(selected);
-    let target = selected;
-    if (selected === "Pet") {
-      target = "Animals";
-    }
-    filteredItems = items.filter((item) => item.type === target);
+    let target = selected.id;
+    // if (selected === "Pet") {
+    //   target = "Animals";
+    // }
+    filteredItems = items.filter((item) => item.category.id === target);
     console.log(filteredItems);
   }
-  if (selected === "All") {
+  if (selected.category === "All") {
     filteredItems = items;
   }
   return (

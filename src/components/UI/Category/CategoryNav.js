@@ -12,8 +12,8 @@ const CategoryNav = (props) => {
   const iconClickHandler = () => {
     setActiveCategory(!activeCategory);
   };
-  const clickHandler = (category) => {
-    setSelected(category);
+  const clickHandler = (category, id) => {
+    setSelected({ category, id });
     console.log(category);
   };
   return (
@@ -23,16 +23,16 @@ const CategoryNav = (props) => {
         <div className={classes.categories}>
           <ul>
             <Tab
-              isSelected={"All" === selected}
+              isSelected={100 === selected.id}
               category="All"
-              onClick={() => clickHandler("All")}
+              onClick={() => clickHandler("All", 100)}
             />
             {category.map((category) => (
               <Tab
                 key={category.id}
-                isSelected={category.category === selected}
+                isSelected={category.id === selected.id}
                 category={category.category}
-                onClick={() => clickHandler(category.category)}
+                onClick={() => clickHandler(category.category, category.id)}
               />
             ))}
           </ul>

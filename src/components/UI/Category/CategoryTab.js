@@ -23,9 +23,9 @@ const CategoryTab = (props) => {
         category.map((category) => (
           <Tab
             key={category.id}
-            isSelected={category.category === selected}
-            category={category.category}
-            onClick={() => clickHandler(category.category)}
+            isSelected={category.id === selected}
+            category={category.id}
+            onClick={() => clickHandler(category.id)}
           />
         ))}
     </div>
