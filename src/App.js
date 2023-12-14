@@ -43,7 +43,7 @@ function App() {
   }, [selected]);
   useEffect(() => {
     let url = "https://cozshopping.codestates-seb.link/api/v3/ranking";
-    url = selected ? `${url}?${selected.id}` : "";
+    url = selected.id !== 100 ? `${url}?category=${selected.id}` : url;
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
@@ -82,7 +82,9 @@ function App() {
           <CategoryBox selected={selected} setItems={setItems} items={items} />
         )}
       </Layout>
-      {ranked && !isLoading && <ItemSlider items={ranked} />}
+      {ranked && !isLoading && (
+        <ItemSlider items={ranked} selected={selected} />
+      )}
     </div>
   );
 }

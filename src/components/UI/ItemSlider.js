@@ -16,10 +16,11 @@ const ArrowRight = (props) => (
 
 const ItemSlider = (props) => {
   const items = props.items;
+  const selected = props.selected;
   const settings = {
     dots: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,
@@ -30,7 +31,7 @@ const ItemSlider = (props) => {
   console.log(items);
   return (
     <div className={classes.itemSlider}>
-      <h2>TOP 10</h2>
+      <h2>TOP 10 in {selected.category}</h2>
       <Slider {...settings}>
         {items.map((item) => (
           <div className={classes.container} key={item.id}>
