@@ -26,7 +26,7 @@ const ItemSlider = (props) => {
     variableHeight: true,
     responsive: [
       {
-        breakpoint: 1500, // 화면 크기가 1024px 이하일 때
+        breakpoint: 1400, // 화면 크기가 1024px 이하일 때
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
